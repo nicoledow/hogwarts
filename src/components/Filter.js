@@ -1,16 +1,25 @@
 import React from 'react';
 
-const Filter = () => {
-    return (
-      <div>
-          <h3>Filter Hogs:</h3>
-          <select>
-              <option value="greased">Greased</option>
-              <option value="name">Sort By Name</option>
-              <option value="weight">Sort By Weight</option>
-          </select>
-      </div>
-    )
-}
+export default class Filter extends React.Component {
+  
+   constructor() {
+       super()
+       this.state = {}
+   }
 
-export default Filter;
+   handleChange = e => {
+       this.setState({ value: e.target.value })
+   }
+
+    render() {
+        return (
+            <div>
+                <h3>Sort Hogs:</h3>
+                <select value="Sort By" className="ui selection dropdown" onChange={e => this.handleChange(e)}>
+                    <option value="name">Sort By Name</option>
+                    <option value="weight">Sort By Weight</option>
+                </select>
+            </div>
+          )
+    }
+}
