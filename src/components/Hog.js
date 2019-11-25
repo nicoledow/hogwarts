@@ -13,10 +13,9 @@ export default class Hog extends React.Component {
   };
 
     render() {
-        {console.log(this.props.hogData);}
       return (
         <div className="ui eight wide column">
-         <div className="pigTile">
+         <div className="pigTile" id={this.props.hogData.name}>
            <h4>{this.props.hogData.name}</h4>
            <img src={this.getImage(this.props.hogData.name)} alt="pig" />
          </div>
