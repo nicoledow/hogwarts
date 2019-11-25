@@ -4,25 +4,31 @@ export default class Filter extends React.Component {
   
    constructor() {
        super()
-       this.state = {}
+       this.state = { hogSort: 'none' }
    }
 
    handleChange = e => {
-       e.preventDefault();
-       this.setState({ value: e.target.value })
-       if (this.state.value === 'name') {
-           this.props.sortHogsAlphabetically();
-       } else if (this.state.value === 'weight') {
-           this.props.sortHogsByWeight();
+       console.log('in Filter - handleChange method');
+       //debugger;
+       //e.preventDefault();
+       if (e.target.value === 'name') {
+           this.props.sortHogsAlphabetically(e);
+       } else if (e.target.value === 'weight') {
+           this.props.sortHogsByWeight(e);
+       } else {
+           this.props.resetHogSort();
        }
+    //    setting state here is ONLY triggering a re-render of the filter form...
+    //this.setState({ hogSort: e.target.value })
+    //    console.log('state should be changed');
    }
 
     render() {
         return (
             <div>
                 <h3>Sort Hogs:</h3>
-                <select value="Sort By" className="ui selection dropdown" onChange={e => this.handleChange(e)}>
-                    <option value="selectAnOption">Select a sorting option:</option>
+                <select name="sortingOptionSelect" onChange={e => this.handleChange(e)} className="ui selection dropdown">
+                    <option value="default">Choose a Sorting Option</option>
                     <option value="name">Sort By Name</option>
                     <option value="weight">Sort By Weight</option>
                 </select>

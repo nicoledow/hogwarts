@@ -10,27 +10,46 @@ class App extends Component {
 
   constructor() {
     super();
-    this.state = {}
+    this.state = { hogSort: 'none'}
     this.hogs = hogs
   }
 
-  sortHogsAlphabetically = () => {
-    this.hogs = this.hogs.sort(function(hog1, hog2) {
-      return hog1.name.localeCompare(hog2.name);
-    });
+  sortHogsAlphabetically = e => {
+    console.log('in app - sortHogsAlph method');
+    this.hogs.sort((hog1, hog2) => {
+      if (hog1.name > hog2.name) {
+        return 1;
+      } else {
+        return -1;
+      }
+    })
+    //debugger;
+    this.setState({hogSort: e.target.value})
+    //console.log('apps hogSort in state was set to e.target.value')
+    return this.hogs;
   }
 
-  sortHogsByWeight = () => {
-    this.hogs = this.hogs.sort(function(hog1, hog2) {
-      return hog1.weight - hog2.weight;
+  sortHogsByWeight = e => {
+    this.hogs.sort((hog1, hog2) => {
+      if (hog1.weight > hog2.weight) {
+        return 1;
+      } else {
+        return -1;
+      }
     })
+    this.setState({hogSort: e.target.value})
+    return this.hogs;
+  }
+
+  resetHogSort = () => {
+    this.setState({ hogSort: 'none'})
   }
 
   render() {
     return (
       <div className="App">
           < Nav />
-          < Filter sortHogsAlphabetically={this.sortHogsAlphabetically} sortHogsByWeight={this.sortHogsByWeight} hogs={hogs} />
+          < Filter resetHogSort={this.resetHogSort} sortHogsAlphabetically={this.sortHogsAlphabetically} sortHogsByWeight={this.sortHogsByWeight} hogs={hogs} hogSort={this.state.hogSort}/>
           < HogsContainer hogs={hogs} />
       </div>
     )
