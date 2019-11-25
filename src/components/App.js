@@ -45,11 +45,15 @@ class App extends Component {
     this.setState({ hogSort: 'none'})
   }
 
+  handleGreasedCheck = () => {
+    this.hogs.filter()
+  }
+
   render() {
     return (
       <div className="App">
           < Nav />
-          < Filter resetHogSort={this.resetHogSort} sortHogsAlphabetically={this.sortHogsAlphabetically} sortHogsByWeight={this.sortHogsByWeight} hogs={hogs} hogSort={this.state.hogSort}/>
+          < Filter handleGreasedCheck={this.handleGreasedCheck} resetHogSort={this.resetHogSort} sortHogsAlphabetically={this.sortHogsAlphabetically} sortHogsByWeight={this.sortHogsByWeight} hogs={hogs} hogSort={this.state.hogSort}/>
           < HogsContainer hogs={hogs} />
       </div>
     )

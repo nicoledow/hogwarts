@@ -1,4 +1,5 @@
 import React from 'react';
+import GreasedCheckbox from './GreasedCheckbox';
 
 export default class Filter extends React.Component {
   
@@ -18,9 +19,6 @@ export default class Filter extends React.Component {
        } else {
            this.props.resetHogSort();
        }
-    //    setting state here is ONLY triggering a re-render of the filter form...
-    //this.setState({ hogSort: e.target.value })
-    //    console.log('state should be changed');
    }
 
     render() {
@@ -32,6 +30,7 @@ export default class Filter extends React.Component {
                     <option value="name">Sort By Name</option>
                     <option value="weight">Sort By Weight</option>
                 </select>
+                < GreasedCheckbox hogs={this.props.hogs} resetHogSort={this.props.resetHogSort} handleGreasedCheck={this.props.handleGreasedCheck}/>
             </div>
           )
     }
