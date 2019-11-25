@@ -46,7 +46,11 @@ class App extends Component {
   }
 
   handleGreasedCheck = () => {
-    this.hogs.filter()
+    console.log('in app - handlegreasedcheck func')
+    //filter hogs to only include greased
+    //need to setState
+    this.hogs.filter(hog => hog.greased === true);
+    this.setState({greasedOnly: true});
   }
 
   render() {
